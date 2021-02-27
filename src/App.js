@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import { SwipeableDrawer } from "@material-ui/core";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Page from "./Components/Page";
+import ClassList from "./Components/ClassList"
+
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+  return <>
+    <Router>
+      <Switch>
+        <Route path="/">
+          <Page component={<ClassList />} />
+        </Route>
+        <Route path="/aula/:id">
+
+        </Route>
+      </Switch>
+    </Router>
+
+  </>;
 }
 
 export default App;
