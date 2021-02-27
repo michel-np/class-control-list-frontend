@@ -8,9 +8,10 @@ module.exports = (sequelize) => {
         },
         date: {
             type: DataTypes.DATE,
-            allowNull: false
         }
     });
+
+
 
     return StudyClass;
 

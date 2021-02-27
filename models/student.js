@@ -11,5 +11,6 @@ module.exports = (sequelize) => {
             allowNull: false
         }
     })
+
     return Student;
 }
