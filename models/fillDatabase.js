@@ -25,7 +25,7 @@ StudyClass.belongsToMany(Student, { through: "StudentClass" });
 
 
 (async () => {
-    await sequelize.sync();
+    await sequelize.sync({force:true});
     Student.bulkCreate(initialStudents);
     StudyClass.bulkCreate(classes);
     fillStudyClass();
