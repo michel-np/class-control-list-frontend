@@ -35,7 +35,6 @@ const updateStudentStatus = async (payload) => {
 }
 
 module.exports = {
-    addStudentClass,
     getClasses,
     updateStudentStatus
 };
