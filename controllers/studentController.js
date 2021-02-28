@@ -14,7 +14,21 @@ const getAllStudents = async () => {
 
 }
 
+const getStudentAttendanceStatus = async (studentId, classId) => {
+    try {
+        let student = await models.StudentClass.findOne({
+            where: {
+                StudyClassId: classId,
+                StudentId: studentId
+            }
+        })
+        return student
+    } catch (error) {
+
+    }
+}
 
 module.exports = {
-    getAllStudents
+    getAllStudents,
+    getStudentAttendanceStatus
 };

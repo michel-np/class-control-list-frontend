@@ -8,6 +8,10 @@ router.get("/", async (req, res, next) => {
     res.status(200).send(students);
 })
 
+router.get("/get-student-attendance-status", async (req, res, next) => {
+    let student = await studentController.getStudentAttendanceStatus(req.query.studentId, req.query.classId)
+    res.status(200).send(student);
+})
 
 
 

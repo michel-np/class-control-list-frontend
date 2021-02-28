@@ -2,26 +2,40 @@ const sequelize = require("../models");
 const models = sequelize().models;
 
 
-const addStudentClass = async (payload) => {
-    await models.StudentClass.create({
-        StudentId: 1,
-        StudyClass: 1,
-    })
-    return "Ok";
-}
 
 const getClasses = async () => {
-    const classes = await models.Student.findAll({
-        where: {
-            id: 1,
-            StudyClassId: 1
-        },
-        include: models.StudyClass
-    });
-    return classes;
+    try {
+        const classes = await models.Student.findAll({
+            where: {
+                id: 1,
+                StudyClassId: 1
+            },
+            include: models.StudyClass
+        });
+        return classes;
+    } catch (error) {
+        return error
+    }
+}
+
+const updateStudentStatus = async (payload) => {
+    try {
+        const { classId, studentId, isPresent } = payload;
+        await models.StudentClass.update({ isPresent: isPresent },
+            {
+                where: {
+                    StudentId: studentId,
+                    StudyClassId: parseInt(classId)
+                }
+            }
+        )
+    } catch (error) {
+        console.log(error)
+    }
 }
 
 module.exports = {
     addStudentClass,
-    getClasses
+    getClasses,
+    updateStudentStatus
 };

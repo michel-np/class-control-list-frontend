@@ -13,5 +13,14 @@ router.get("/", async (req, res, next) => {
     res.status(200).send(classes);
 })
 
+router.post("/update-student-status", async (req, res, next) => {
+    try {
+        await studentClassController.updateStudentStatus(req.body);
+        res.status(200).send("updated")
+    } catch (error) {
+        next();
+    }
+})
+
 
 module.exports = router;

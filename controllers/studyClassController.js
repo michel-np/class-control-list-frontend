@@ -29,7 +29,7 @@ const getStudentsFromClass = async (classId) => {
             },
             include: {
                 model: models.Student,
-                attributes: ["name", "age"],
+                attributes: ["name", "age", "id"],
                 through: {
                     attributes: ["isPresent"]
                 }
@@ -37,11 +37,13 @@ const getStudentsFromClass = async (classId) => {
         })
         let classData = queryData[0].dataValues;
         let attendanceList = classData.Students.map(student => ({
+            id: student.id,
             name: student.name,
             age: student.age,
             isPresent: student.StudentClass.isPresent
         }))
         return {
+            classId: classId,
             discipline: classData.discipline,
             date: classData.date,
             list: attendanceList

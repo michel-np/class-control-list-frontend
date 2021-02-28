@@ -10,30 +10,7 @@ const app = express();
 const db = sequelize();
 
 
-
-
-
-
-
 app.use(express.json({ limit: "50mb" }));
-
-// app.get("/getstudentclasses", async (req, res, next) => {
-//     let response = await db.models.StudyClass.findAll({
-//         where: {
-//             discipline: "Inglês"
-//         },
-//         include: {
-//             model: db.models.Student,
-//             through: {
-//                 where: {
-//                     isPresent: true
-//                 }
-//             }
-//         }
-
-//     });
-//     res.status(200).send(response)
-// })
 
 app.use(require("cors")())
 
