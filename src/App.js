@@ -1,4 +1,3 @@
-import { SwipeableDrawer } from "@material-ui/core";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 import Page from "./Components/Page";
 import ClassList from "./Components/ClassList"

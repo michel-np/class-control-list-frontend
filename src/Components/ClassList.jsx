@@ -1,47 +1,13 @@
 import React, { useState, useEffect } from "react";
-import { Grid, List, ListItem, RadioGroup, Radio, ListItemIcon, Checkbox, ListItemText, Backdrop, Typography } from "@material-ui/core";
-import { getStudentsFromClass, getClasses, getStudentsByClassId } from "../providers/classProvider"
+import { Grid, List, ListItem, RadioGroup, Radio, ListItemIcon, Checkbox, ListItemText, Backdrop, Typography, } from "@material-ui/core";
+import { getClasses, getStudentsByClassId } from "../providers/classProvider"
 import { getStudentAttendanceStatus } from "../providers/studentProvider";
 import { makeStyles } from "@material-ui/styles"
 import { updateAttendanceStatus } from "../providers/studentClassProvider";
+import style from "./ClassListStyle"
 
 
-const useStyles = makeStyles(() => ({
-
-    studentSearch: {
-        width: "100%",
-        backgroundColor: "white",
-        display: "flex",
-        justifyContent: "center",
-        "& div": {
-            margin: "30px 10px 30px 10px",
-            height: "50px",
-            backgroundColor: "gray",
-            width: "80%",
-            borderRadius: 5,
-            display: "flex",
-            justifyContent: "space-between",
-            "& input[type=text]": {
-                marginLeft: 10,
-                width: "80%",
-                border: "0px solid",
-                backgroundColor: "transparent",
-                color: "white",
-                "&:focus": {
-                    outline: "none",
-                    minHeight: "4%",
-                }
-            }
-        }
-    },
-    studentsList: {
-        padding: 10
-
-    },
-    ".MuiListItemText-primary": {
-        fontSize: 20
-    }
-}))
+const useStyles = makeStyles(() => style)
 
 
 const ClassList = (props) => {
@@ -85,7 +51,6 @@ const ClassList = (props) => {
     }
 
     const handleChangeStudentPresence = async (event, studentId, isPresent) => {
-
         let requestPayload = {
             classId: currentClass.classId,
             studentId: studentId,
@@ -104,7 +69,7 @@ const ClassList = (props) => {
                 }
             })
         })
-            .catch(err => console.log(err))
+            .catch(err => console.error(err))
     }
 
     const handleStudentFilterChange = (event) => {
@@ -124,7 +89,7 @@ const ClassList = (props) => {
         <div style={{ display: "flex", justifyContent: "center" }}>
             <Grid container style={{ width: "80vw" }}>
                 <Grid item sm={4} xs={12} >
-                    <div style={{ position: "-webkit-sticky", position: "sticky", top: "10%" }}>
+                    <div style={{ position: "-webkit-sticky", top: 0, backgroundColor: "#ededed" }}>
                         <h3 style={{ padding: 20, fontSize: 25, textAlitn: "center", display: "flex", justifyContent: "center" }}>Aulas</h3>
                         <List style={{ position: "sticky" }}>
                             <RadioGroup>
@@ -149,14 +114,16 @@ const ClassList = (props) => {
                     </div>
 
                 </Grid>
-                <Grid item sm={8} xs className={classes.studentsList}>
+                <Grid item sm={8} xs className={classes.studentsList} >
                     {currentClass &&
-                        <div className={classes.studentSearch}>
-                            <div >
-                                <input type="text" onChange={handleStudentFilterChange} value={filter} />
+                        <>
+                            <Typography align="center" style={{ fontSize: 30 }}>{currentClass.discipline} - {new Date(currentClass.date).toLocaleDateString()}</Typography>
+                            <div className={classes.studentSearch}>
+                                <div >
+                                    <input type="text" onChange={handleStudentFilterChange} value={filter} placeholder="Filtrar pelo nome do(a) aluno(a)" />
+                                </div>
                             </div>
-                        </div>
-                    }
+                        </>}
 
                     <div style={{ overflow: "scroll", height: "60%" }}>
                         {filteredStudents
