@@ -19,9 +19,8 @@ app.use("/aluno", studentRoutes);
 app.use("/aula", studyClassRoutes);
 app.use("/aluno-aula", studentClassRoutes);
 
-console.log(`PORT .env ${typeof (parseInt(process.env.PORT))}, hardcoded ${typeof (3001)}`)
 
-var PORT = process.env.PORT;
+var PORT = process.env.PORT || 6005;
 
 app.listen(PORT, () => {
     console.log(`listening on port: ${PORT}`)
