@@ -1,5 +1,6 @@
 const sequelize = require("../models");
 const models = sequelize().models;
+const { Op } = require("sequelize");
 
 const getAllClasses = async () => {
     try {
@@ -53,8 +54,32 @@ const getStudentsFromClass = async (classId) => {
     }
 }
 
+const createClass = async (discipline, students) => {
+    try {
+        let studyClass = await models.StudyClass.create({
+            discipline: discipline
+        })
+        let ids = students.map(student => student.id);
+        students = await models.Student.findAll({
+            where: {
+                id: {
+                    [Op.in]: ids
+
+                }
+            }
+        })
+        await studyClass.setStudents(students);
+
+    } catch (error) {
+        console.log(error)
+    }
+
+
+}
+
 module.exports = {
     getAllClasses,
     getClassesById,
-    getStudentsFromClass
+    getStudentsFromClass,
+    createClass
 }
