@@ -1,4 +1,5 @@
 {
+<<<<<<< HEAD
   "name": "class-attendance-list",
   "version": "0.1.0",
   "private": true,
@@ -38,5 +39,27 @@
       "last 1 firefox version",
       "last 1 safari version"
     ]
+=======
+  "name": "class-attendance-list-backend",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "node index.js"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "cors": "^2.8.5",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "sequelize": "^6.5.0",
+    "sqlite3": "^5.0.2"
+  },
+  "devDependencies": {
+    "sequelize-cli": "^6.2.0"
+>>>>>>> 3bad011b3a59e2904ea5ee0210cf9e3d7ce2030e
   }
 }
